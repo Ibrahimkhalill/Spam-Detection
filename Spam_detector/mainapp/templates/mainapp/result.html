@@ -1,0 +1,162 @@
+{% extends 'mainapp/navbar.html' %}
+{% block main_content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Result</title>
+  <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
+
+  <style>
+    .show-result {
+      height: content;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      flex-flow: column wrap;
+      background-color: rgb(252, 243, 243);
+      margin-bottom: 50px;
+      margin-top: -30px;
+      padding: 35px;
+    }
+
+    .output {
+      height: content;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 19px;
+      font-weight: 300;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: red;
+      margin-top: 5px;
+      padding: 30px;
+    }
+
+    .output-not {
+      height: content;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 19px;
+      font-weight: 300;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+      color: green;
+      margin-top: 3px;
+      padding: 30px;
+    }
+
+    .output-logo {
+      height: 100px;
+      width: 100%;
+
+      justify-content: center;
+      display: flex;
+      align-items: center;
+    }
+
+    .output-logo img {
+      height: 100%;
+      width: 100px;
+    }
+
+    .head {
+      height: 40px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      border-top: 2px solid black;
+      background-color: yellow;
+      display: flex;
+      flex-flow: column;
+    }
+
+    .head h2 {
+      font-size: 15px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: black;
+    }
+
+    .head-git {
+      height: 40px;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
+      background-color: rgb(250, 244, 244);
+      display: flex;
+      flex-flow: row;
+      margin-bottom: 5px;
+    }
+
+    .head-git h2 {
+      font-size: 18px;
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      color: black;
+    }
+
+    .head-git h2 a {
+      text-decoration: none;
+      color: blue;
+      font-size: 23px;
+    }
+
+    .head-git h2 a:hover {
+      color: rgb(211, 47, 41);
+      background-color: beige;
+    }
+    .alert{
+       visibility: hidden;
+    }
+
+   
+  </style>
+</head>
+
+<body>
+
+  <div class="show-result">
+    <div class="output">
+      <h3
+        style="color:black; font-size:22px; font-weight:bold; font-family:'Courier New', Courier, monospace; text-transform: uppercase;">
+        {{text1}}</h3>
+    </div>
+    <br>
+    {% if result == 'yes' %}
+    <div class="output-logo">
+      <img src="{% static 'img/spam-2.png' %}" />
+
+    </div>
+    <div class="output-not">This is a Ham message</div>
+
+    {% endif %}
+    {% if result == 'yes' %}
+    <div class="alert">
+      <audio controls autoplay>
+        <source src="{% static ' audio/safe.mpeg' %}" type="audio/mp3">
+      </audio>
+    </div>
+    {% endif %}
+    {% if result == 'no' %}
+    <div class="output-logo">
+      <img src="{% static 'img/spam.png' %}" />
+    </div>
+    <div class="output">This is a Ham message</div>
+    {% endif %}
+
+    {% if result == 'no' %}
+
+    <div class="alert">
+      <audio controls autoplay>
+        <source src="{% static ' audio/warning.mpeg' %}" type="audio/mp3">
+      </audio>
+    </div>
+    {% endif %}
+
+</body>
+
+</html>
+{% endblock main_content %}
